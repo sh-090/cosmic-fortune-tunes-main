@@ -1,0 +1,243 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+@layer base {
+  :root {
+    --background: 216 28% 7%;
+    --foreground: 213 31% 91%;
+
+    --card: 217 33% 10%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 217 33% 10%;
+    --popover-foreground: 213 31% 91%;
+
+    --primary: 47 96% 53%;
+    --primary-foreground: 217 33% 10%;
+
+    --secondary: 262 52% 47%;
+    --secondary-foreground: 213 31% 91%;
+
+    --muted: 217 19% 27%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 262 83% 58%;
+    --accent-foreground: 213 31% 91%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 27% 18%;
+    --input: 217 27% 18%;
+    --ring: 47 96% 53%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsl(262 52% 47% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(47 96% 53% / 0.1) 0%, transparent 50%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+}
+
+@layer utilities {
+  .font-orbitron {
+    font-family: 'Orbitron', monospace;
+  }
+  
+  .cosmic-glow {
+    box-shadow: 0 0 20px hsl(47 96% 53% / 0.3), inset 0 0 20px hsl(262 52% 47% / 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .cosmic-glow:hover {
+    box-shadow: 0 0 30px hsl(47 96% 53% / 0.5), inset 0 0 30px hsl(262 52% 47% / 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .star-twinkle {
+    animation: twinkle 2s ease-in-out infinite alternate;
+  }
+  
+  .visualizer-bar {
+    animation: visualizer-pulse 0.3s ease-in-out;
+  }
+  
+  @keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+  }
+  
+  @keyframes visualizer-pulse {
+    0% { transform: scaleY(0.8); }
+    50% { transform: scaleY(1.2); }
+    100% { transform: scaleY(1); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(2deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+  }
+  
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes orbit {
+    0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+  }
+  
+  .orbit-animation {
+    animation: orbit 20s linear infinite;
+  }
+
+  /* New wow factor animations */
+  @keyframes cosmic-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(47 96% 53% / 0.3), 0 0 40px hsl(262 52% 47% / 0.2);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(47 96% 53% / 0.6), 0 0 80px hsl(262 52% 47% / 0.4);
+    }
+  }
+
+  @keyframes neon-flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+      text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px hsl(47 96% 53%), 0 0 80px hsl(47 96% 53%);
+    }
+    20%, 24%, 55% {
+      text-shadow: none;
+    }
+  }
+
+  @keyframes particle-drift {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    33% { transform: translateY(-30px) translateX(10px) rotate(120deg); }
+    66% { transform: translateY(-10px) translateX(-15px) rotate(240deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+  }
+
+  @keyframes aurora {
+    0%, 100% { 
+      background-position: 0% 50%;
+      filter: hue-rotate(0deg);
+    }
+    50% { 
+      background-position: 100% 50%;
+      filter: hue-rotate(90deg);
+    }
+  }
+
+  .cosmic-pulse {
+    animation: cosmic-pulse 3s ease-in-out infinite;
+  }
+
+  .neon-flicker {
+    animation: neon-flicker 2s infinite linear;
+  }
+
+  .particle-drift {
+    animation: particle-drift 15s ease-in-out infinite;
+  }
+
+  .aurora-bg {
+    background: linear-gradient(-45deg, 
+      hsl(262 52% 47% / 0.3), 
+      hsl(47 96% 53% / 0.3), 
+      hsl(262 83% 58% / 0.3), 
+      hsl(47 96% 53% / 0.2)
+    );
+    background-size: 400% 400%;
+    animation: aurora 8s ease infinite;
+  }
+
+  /* Enhanced button hover effects */
+  .btn-cosmic {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-cosmic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-cosmic:hover::before {
+    left: 100%;
+  }
+
+  /* Glow text effect */
+  .glow-text {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
+
+.glass-container {
+  transition: all 0.3s ease;
+}
+
+.glass-pill {
+  @apply flex items-center space-x-1.5 text-xs px-2.5 py-1.5 rounded-full backdrop-blur-sm;
+  @apply border border-white/5;
+}
+
+.card-width{
+  width: 100%;
+}
+
+.weatherforcode{
+  margin-right: 70%;
+}
